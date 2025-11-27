@@ -1,65 +1,98 @@
-import Image from "next/image";
+// Data de los proyectos de Karl Camaro
 
-export default function Home() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+export interface Project {
+  id: string;
+  title: string;
+  description: string;
+  longDescription: string;
+  tech: string[];
+  features: string[];
+  github: string;
+  demo: string;
+  status: "live" | "in-progress" | "completed";
+  category: "web-app" | "dashboard" | "productivity";
+  year: string;
+}
+
+export const projects: Project[] = [
+  {
+    id: "content-guardian",
+    title: "Content Guardian",
+    description: "AI-Powered Content Moderation Platform",
+    longDescription:
+      "Modern web application for real-time content analysis and moderation using AI. Features automated workflows, sentiment detection, and comprehensive moderation tools for community management.",
+    tech: ["Next.js 14", "TypeScript", "Tailwind CSS", "AI Integration"],
+    features: [
+      "Real-time content analysis",
+      "AI-powered sentiment detection",
+      "Automated moderation workflows",
+      "Dark/Light mode support",
+      "Responsive design",
+      "Modern glassmorphism UI",
+    ],
+    github: "https://github.com/Karlcamarodev/content-guardian",
+    demo: "https://content-guardian.vercel.app",
+    status: "live",
+    category: "web-app",
+    year: "2024",
+  },
+  {
+    id: "tiktok-dashboard",
+    title: "TikTok Analytics Dashboard",
+    description: "Real-time Analytics & Insights Platform",
+    longDescription:
+      "Interactive dashboard for tracking TikTok metrics and performance analytics. Features real-time data visualization, engagement metrics, and audience insights with modern glassmorphism design.",
+    tech: ["HTML5", "CSS3", "JavaScript ES6+", "Chart.js"],
+    features: [
+      "Real-time metrics tracking",
+      "Interactive data charts",
+      "Engagement analytics",
+      "Audience insights",
+      "Glassmorphism design",
+      "Fully responsive layout",
+    ],
+    github: "https://github.com/Karlcamarodev/tiktok-dashboard",
+    demo: "https://karlcamarodev.github.io/tiktok-dashboard/",
+    status: "live",
+    category: "dashboard",
+    year: "2024",
+  },
+  {
+    id: "quest-manager",
+    title: "Quest Manager",
+    description: "Gamified Task Management System",
+    longDescription:
+      "RPG-style task manager that transforms productivity into an engaging game experience. Features XP system, level progression, achievements, and daily streaks to motivate task completion.",
+    tech: ["HTML5", "CSS3", "JavaScript ES6+", "LocalStorage"],
+    features: [
+      "XP and leveling system",
+      "Achievement system",
+      "Daily streak tracking",
+      "Drag & drop interface",
+      "Subtask management",
+      "Progress visualization",
+    ],
+    github: "https://github.com/Karlcamarodev/quest-manager",
+    demo: "https://karlcamarodev.github.io/quest-manager/",
+    status: "live",
+    category: "productivity",
+    year: "2024",
+  },
+];
+
+// Función helper para obtener un proyecto por ID
+export function getProjectById(id: string): Project | undefined {
+  return projects.find((project) => project.id === id);
+}
+
+// Función helper para obtener proyectos por categoría
+export function getProjectsByCategory(
+  category: Project["category"]
+): Project[] {
+  return projects.filter((project) => project.category === category);
+}
+
+// Función helper para obtener proyectos por estado
+export function getProjectsByStatus(status: Project["status"]): Project[] {
+  return projects.filter((project) => project.status === status);
 }
