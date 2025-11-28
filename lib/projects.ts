@@ -1,4 +1,4 @@
-// Data de los proyectos de Karl Camaro
+// Data de los proyectos de Karl Developer
 
 export interface Project {
   id: string;

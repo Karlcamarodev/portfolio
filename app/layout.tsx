@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://karl-camaro-portfolio.vercel.app'),
   title: "Karl Camaro - Frontend Developer & Community Manager",
   description:
     "Frontend Developer and Community Manager from Peru to Italy. Specialized in React, Next.js, TypeScript, and content moderation. Building modern web experiences.",
